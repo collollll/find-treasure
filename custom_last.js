@@ -164,7 +164,7 @@ function play() {
         }, 200 + index * 200);
       });
       setTimeout(() => {
-        result.innerText = "다시 보물찾기에 도전해볼까?";
+        result.innerHTML = `정답 : ${coumputerNum}<br>다시 보물찾기에 도전해볼까?`;
         resetBtn.classList.add("alarm");
       }, 2500);
     }, 1000);
