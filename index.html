@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style_last.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  </head>
+  <body>
+    <div id="back">
+      <div id="top">
+        <div id="chance"></div>
+        <img src="img/scroll.png" alt="" />
+      </div>
+
+      <div id="playWindow">
+        <!-- <img class="test" src="img/2953487.jpg" alt="" /> -->
+        <p id="result" class="upDown letter">어디로 가볼까?</p>
+        <div id="dots"></div>
+        <img class="wheel" src="img/wheel.png" alt="" />
+      </div>
+
+      <div class="bottons">
+        <img id="reset" src="img/re.png" alt="" />
+        <input
+          id="user"
+          placeholder="1~100 숫자 입력"
+          onkeypress="if(event.keyCode == 13){play()}"
+        />
+        <button id="play">찾기</button>
+      </div>
+
+      <ul id="answer">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <div id="modalBox">
+      <div class="close"><i class="fa-solid fa-xmark"></i></div>
+      <div class="textBox">
+        <h2>Find Treasure!</h2>
+        <div class="description">
+          <div>
+            <p>
+              할아버지의 낡은 일기장에서 보물 지도를 발견했다. 보물을 찾으러
+              모험을 떠나보자. 지도의 사용법은 다음과 같다는데..?
+            </p>
+            <p><게임방법></p>
+            <p>
+              1. 지도에 찍힌 점은 <span>각각 1~100 숫자</span>에 매칭된다.<br />
+              1~100 사이 숫자를 입력해 보물을 찾을 수 있다.
+            </p>
+            <p>
+              2. 입력한 숫자와 보물이 숨겨진 곳의 <span>숫자가 일치</span>하면
+              성공!
+            </p>
+            <p>
+              3. 숫자가 일치하지 않으면 하트 하나를 잃는다. 기회는
+              <span>총 5번!</span>
+            </p>
+            <p>
+              4. <img src="img/scroll.png" />를 클릭하면 게임방법을 다시 볼 수
+              있다.
+            </p>
+            <p>
+              5. <img src="img/re.png" />를 클릭하면 게임을 처음부터 다시 시작할
+              수 있다.
+            </p>
+            <p>
+              <span>Hint!</span> 더 높은 숫자를 입력해야 하면 '더 멀리',
+              <br />낮은 숫자를 입력해야 하면 '더 가까이' 메세지가 출력된다.
+            </p>
+          </div>
+        </div>
+      </div>
+      <span class="cursorSc">Scroll</span>
+    </div>
+
+    <div id="modalFind">
+      <img src="img/treasure.png" alt="" />
+      <div class="inner">
+        <div class="lines">
+          <p class="in"></p>
+          <span>▼</span>
+        </div>
+        <div class="home">처음으로 돌아가기</div>
+      </div>
+    </div>
+
+    <script src="custom_last.js"></script>
+  </body>
+</html>
