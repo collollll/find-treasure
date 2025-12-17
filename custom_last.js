@@ -1,4 +1,4 @@
-// 🔅요소 가져오기
+// 요소 가져오기
 let result = document.querySelector("#result");
 let chance = document.querySelector("#chance");
 let user = document.querySelector("#user");
@@ -13,18 +13,18 @@ let coumputerNum;
 let history = [];
 console.log(history);
 
-// 🔅남은 횟수
+// 남은 횟수
 let heart = '<img src="img/heart.png">';
 chance.innerHTML = heart.repeat(count);
 
-// 🔅랜덤 숫자 만들기
+// 랜덤 숫자 만들기
 function randomNum() {
   coumputerNum = Math.floor(Math.random() * 100 + 1);
   console.log(coumputerNum);
 }
 randomNum();
 
-// 🔅비어있는 점 찍기
+// 비어있는 점 찍기
 let dotBox = document.querySelector("#dots");
 
 let dotCount = 100;
@@ -48,7 +48,7 @@ points.forEach((pos, i) => {
   dotBox.appendChild(dot);
 });
 
-// 🔅입력한 숫자에 맞는 dot에 효과 적용
+// 입력한 숫자에 맞는 dot에 효과 적용
 function matching(userNum) {
   let dot = dotBox.querySelector(`.dot[data-index="${userNum}"]`);
 
@@ -61,37 +61,46 @@ function matching(userNum) {
   }
 }
 
-// 🔅play 함수 만들기
+// play 함수 만들기
 let userNum;
+let isPlaying = false;
 
 function play() {
+  if (isPlaying) return; // 이미 실행 중이면 무시
+  isPlaying = true; // 실행 시작
+
   userNum = user.value;
   console.log(userNum);
 
-  // 🔅입력한 숫자가 범위에 맞는지 확인
-  if (userNum < 1 || userNum > 100) {
+  // 입력한 숫자가 범위에 맞는지 확인
+  if (!/^(?:[1-9][0-9]?|100)$/.test(user.value)) {
     result.innerHTML = "<span>1부터 100까지의 숫자를 입력해주세요</span>";
+    user.value = "";
+    isPlaying = false;
     return;
   }
 
   // 입력받은 값이 숫자가 아니라면
   if (isNaN(userNum)) {
     result.innerHTML = "<span>숫자를 입력해주세요</span>";
+    user.value = "";
+    isPlaying = false;
     return;
   }
 
-  // 🔅↓↓ 아래 파트 이전에 history에 내가 입력한 값과 같은게 있는지 확인을 먼저 해야함
+  // history에 내가 입력한 값과 같은게 있는지 먼저 확인
   if (history.includes(userNum)) {
     result.innerText = "이미 입력한 숫자입니다. 다른 숫자를 입력해주세요.";
     user.value = "";
+    isPlaying = false;
     return;
   }
 
-  // 🔅이전에 입력했던 숫자를 다시 입력한 경우, 숫자를 다시 입력할 수 있도록 return
+  // 이전에 입력했던 숫자를 다시 입력한 경우, 숫자를 다시 입력할 수 있도록 return
   history.push(userNum);
   console.log(history);
 
-  // 🔅입력한 숫자와 랜덤 숫자를 비교
+  // 입력한 숫자와 랜덤 숫자를 비교
   if (userNum < coumputerNum) {
     gsap.to(wheel, { rotate: "+=360deg", duration: 1 });
     result.classList.remove("upDown");
@@ -103,6 +112,7 @@ function play() {
         if (count > 0) {
           result.innerHTML = "이런 꽝이잖아! <br> 더 멀리 나가보자";
         }
+        isPlaying = false;
       }, 1200);
     }
   } else if (userNum > coumputerNum) {
@@ -116,6 +126,7 @@ function play() {
         if (count > 0) {
           result.innerHTML = "이런 꽝이잖아! <br> 더 가까이에 있나본데...";
         }
+        isPlaying = false;
       }, 1200);
     }
   } else if (userNum == coumputerNum) {
@@ -128,13 +139,14 @@ function play() {
     }, 1000);
   } else {
     result.innerHTML = "<span>숫자를 입력해주세요</span>";
+    isPlaying = false;
   }
 
-  // 🔅입력받은 값을 화면에 띄움
+  // 입력받은 값을 화면에 띄움
   answer[5 - count].textContent = user.value;
   user.value = "";
 
-  // 🔅찬스를 1씩 감소시킴
+  // 찬스를 1씩 감소시킴
   count--;
   chance.innerHTML = heart.repeat(count);
 
@@ -167,19 +179,21 @@ function play() {
         result.innerHTML = `정답 : ${coumputerNum}<br>다시 보물찾기에 도전해볼까?`;
         resetBtn.classList.add("alarm");
       }, 2500);
+
+      isPlaying = false;
     }, 1000);
   }
 }
 
-// 🔅시작 버튼 눌렀을 때 play 함수를 호출
+// 시작 버튼 눌렀을 때 play 함수를 호출
 playBtn.addEventListener("click", play);
 
-// 🔅input을 누르면(=focus) 자동으로 입력한 값이 지워짐
+// input을 누르면(=focus) 자동으로 입력한 값이 지워짐
 user.addEventListener("focus", () => {
   user.value = "";
 });
 
-// 🔅재시작 버튼 눌렀을 때 초기화 되도록 함
+// 재시작 버튼 눌렀을 때 초기화 되도록 함
 resetBtn.addEventListener("click", reset);
 function reset() {
   result.textContent = "어디로 가볼까?";
@@ -193,21 +207,25 @@ function reset() {
     answer[index].textContent = "";
   });
   wheel.style.transform = `rotate(0deg) translateX(-50%)`;
+  isPlaying = false;
 
   resetBtn.classList.remove("alarm");
 
   history.forEach((i) => {
     history.splice(0, i);
   });
-  document
-    .querySelectorAll(".dot.active")
-    .forEach((d) => d.classList.remove("active"));
+  document.querySelectorAll(".dot").forEach((d) => {
+    d.classList.remove("miss");
+    d.classList.remove("active");
+  });
+
+  // console.log(document.querySelectorAll(".dot.active"));
 
   randomNum();
   findReset();
 }
 
-// 🔅게임방법 모달창
+// 게임방법 모달창
 let modalBox = document.querySelector("#modalBox");
 let close = document.querySelector(".close");
 
@@ -237,7 +255,6 @@ let desBox = document.querySelector("#modalBox .description > div");
 let cursorSc = document.querySelector("#modalBox .cursorSc");
 function showScroll(e) {
   if (desBox.scrollHeight > desBox.clientHeight) {
-    // console.log("와~");
     cursorSc.style.display = "block";
     cursorSc.style.left = `${e.clientX}px`;
     cursorSc.style.top = `${e.clientY}px`;
@@ -257,7 +274,7 @@ window.addEventListener("resize", () => {
   }
 });
 
-// 🔅정답화면 모달창_find 함수
+// 정답화면 모달창_find 함수
 let treasure = document.querySelector("#modalFind");
 let text22 = document.querySelector("#modalFind .inner .in");
 let arrow = document.querySelector("#modalFind .inner span");
@@ -308,6 +325,7 @@ function find() {
           isRunning = false;
         }
       }, 120);
+      isPlaying = false;
     });
 }
 
@@ -358,8 +376,8 @@ function start3() {
 
 home.addEventListener("click", reset);
 
+// 정답화면 모달창_리셋
 function findReset() {
-  textNum = 0;
   isStart1 = false;
   isStart2 = false;
   text22.textContent = "";
