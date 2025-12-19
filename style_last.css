@@ -16,6 +16,20 @@ ul {
   font-weight: 700;
   font-display: swap;
 }
+@font-face {
+  font-family: "PyeojinGothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2504-1@1.0/PyeojinGothic-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+body {
+  font-family: "PyeojinGothic";
+}
+button {
+  font-family: "PyeojinGothic";
+}
 
 @media (min-width: 1220px) {
   /*전체*/
@@ -238,6 +252,7 @@ ul {
     -webkit-text-stroke: 1px white;
     font-family: "Galmuri11";
     animation: move2 0.3s linear alternate infinite;
+    pointer-events: none;
   }
   @keyframes move2 {
     0% {
@@ -580,6 +595,7 @@ ul {
     -webkit-text-stroke: 1px white;
     font-family: "Galmuri11";
     animation: move2 0.3s linear alternate infinite;
+    pointer-events: none;
   }
   @keyframes move2 {
     0% {
@@ -930,6 +946,7 @@ ul {
     -webkit-text-stroke: 1px white;
     font-family: "Galmuri11";
     animation: move2 0.3s linear alternate infinite;
+    pointer-events: none;
   }
   @keyframes move2 {
     0% {
