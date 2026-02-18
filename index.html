@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Find Treasure</title>
     <link rel="stylesheet" href="style_last.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <link
@@ -30,7 +30,11 @@
         <input
           id="user"
           placeholder="1~100 숫자 입력"
-          onkeypress="if(event.keyCode == 13){play()}"
+          onkeypress="
+            if (event.keyCode == 13) {
+              play();
+            }
+          "
         />
         <button id="play">찾기</button>
       </div>
