@@ -66,8 +66,8 @@ let userNum;
 let isPlaying = false;
 
 function play() {
-  if (isPlaying) return; // 이미 실행 중이면 무시
-  isPlaying = true; // 실행 시작
+  if (isPlaying) return;
+  isPlaying = true;
 
   userNum = user.value;
   console.log(userNum);
@@ -171,9 +171,12 @@ function play() {
       let spans = result.querySelectorAll("span");
 
       spans.forEach((letter, index) => {
-        setTimeout(() => {
-          letter.classList.add("fall");
-        }, 200 + index * 200);
+        setTimeout(
+          () => {
+            letter.classList.add("fall");
+          },
+          200 + index * 200,
+        );
       });
       setTimeout(() => {
         result.innerHTML = `정답 : ${coumputerNum}<br>다시 보물찾기에 도전해볼까?`;
@@ -218,8 +221,6 @@ function reset() {
     d.classList.remove("miss");
     d.classList.remove("active");
   });
-
-  // console.log(document.querySelectorAll(".dot.active"));
 
   randomNum();
   findReset();
@@ -266,7 +267,7 @@ desBox.addEventListener("mousemove", showScroll);
 desBox.addEventListener("mouseleave", () => {
   cursorSc.style.display = "none";
 });
-showScroll();
+showScroll;
 
 window.addEventListener("resize", () => {
   if (desBox.scrollHeight <= desBox.clientHeight) {

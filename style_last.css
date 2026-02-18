@@ -35,7 +35,7 @@ button {
   /*전체*/
   #back {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: url("img/back2.png") no-repeat center / 100% 100%;
     text-align: center;
     font-family: "Galmuri11";
@@ -222,7 +222,7 @@ button {
   /*게임설명_모달창*/
   #modalBox {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     position: absolute;
     left: 0;
     top: 0;
@@ -300,9 +300,9 @@ button {
   /* 정답_모달창 */
   #modalFind {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: black;
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 0px;
     align-content: center;
@@ -378,7 +378,7 @@ button {
   /*전체*/
   #back {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: url("img/back2.png") no-repeat center / cover;
     text-align: center;
     font-family: "Galmuri11";
@@ -565,7 +565,7 @@ button {
   /*게임설명_모달창*/
   #modalBox {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     position: absolute;
     left: 0;
     top: 0;
@@ -644,9 +644,9 @@ button {
   /* 정답_모달창 */
   #modalFind {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: black;
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 0px;
     align-content: center;
@@ -722,7 +722,7 @@ button {
   /*전체*/
   #back {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: url("img/back2_ver.png") no-repeat center / cover;
     text-align: center;
     font-family: "Galmuri11";
@@ -916,7 +916,7 @@ button {
   /*게임설명_모달창*/
   #modalBox {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     position: absolute;
     left: 0;
     top: 0;
@@ -1016,9 +1016,9 @@ button {
   /* 정답_모달창 */
   #modalFind {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: black;
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 0px;
     align-content: center;
