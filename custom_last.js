@@ -375,10 +375,14 @@ function start3() {
   }, 120);
 }
 
-home.addEventListener("click", reset);
+home.addEventListener("click", (e) => {
+  e.stopPropagation();
+  reset();
+});
 
 // 정답화면 모달창_리셋
 function findReset() {
+  isRunning = false;
   isStart1 = false;
   isStart2 = false;
   text22.textContent = "";
